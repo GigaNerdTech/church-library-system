@@ -1,0 +1,205 @@
+﻿<Window x:Name="LibraryMainWindow" x:Class="Church_Library_System.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Church_Library_System"
+        mc:Ignorable="d"
+        Title="Church Library System" Height="617.529" Width="1094.491" Closing="WindowClose">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="385*"/>
+            <ColumnDefinition Width="162*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="MainTabControl" HorizontalAlignment="Left" Height="567" Margin="10,10,0,0" VerticalAlignment="Top" Width="1066" Grid.ColumnSpan="2">
+            <TabItem x:Name="CheckInTab" Header="Check In" Height="22" VerticalAlignment="Bottom" Margin="-2,-2,-2,2">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="141*"/>
+                        <ColumnDefinition Width="218*"/>
+                        <ColumnDefinition Width="701*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="CheckInButton" Content="Check In!" HorizontalAlignment="Left" Margin="10,493,0,0" VerticalAlignment="Top" Width="149" Height="34" Grid.ColumnSpan="2" Click="CheckInButton_Click"/>
+                    <DataGrid x:Name="PatronCurrentItems" HorizontalAlignment="Left" Height="197" VerticalAlignment="Top" Width="1021" SelectionChanged="PatronCurrentItems_SelectionChanged" IsReadOnly="True" Grid.ColumnSpan="3" Margin="10,282,0,0"/>
+                    <TextBox x:Name="PatronFirstNameInBox" HorizontalAlignment="Left" Height="23" Margin="10,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Grid.ColumnSpan="2"/>
+                    <Label x:Name="PatronNameInLabel" Content="First Name" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="PatronSearchInButton" Content="Search" HorizontalAlignment="Left" Margin="244,37,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="PatronSearchInButton_Click"/>
+                    <TextBox x:Name="PatronLastNameInBox" HorizontalAlignment="Left" Height="23" Margin="184,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <Label x:Name="PatronNameOutLabel_Copy2" Content="Last Name" HorizontalAlignment="Left" Margin="184,11,0,0" VerticalAlignment="Top" Grid.Column="1" Grid.ColumnSpan="2"/>
+                    <Label x:Name="CurrentItemsInLabel" Content="Current Items" HorizontalAlignment="Left" Margin="16,255,0,0" VerticalAlignment="Top"/>
+                    <DataGrid x:Name="PatronInDataGrid" HorizontalAlignment="Left" Height="151" Margin="10,97,0,0" VerticalAlignment="Top" Width="681" Grid.ColumnSpan="3" SelectionChanged="PatronIn_SelectionChanged"/>
+                    <Label x:Name="PatronInfoInLabel" Content="Patron Information" HorizontalAlignment="Left" Margin="16,71,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="FineOverrideCheckbox" Grid.Column="1" HorizontalAlignment="Left" Margin="38,512,0,0" VerticalAlignment="Top" Content="Override Fine"/>
+                    <Button x:Name="ClearCheckInButton" Content="Clear Form" Grid.Column="2" HorizontalAlignment="Left" Margin="522,499,0,0" VerticalAlignment="Top" Width="108" Height="28" Click="ClearCheckInButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="CheckOutTab" Header="Check Out" GotFocus="ChangeTab">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="46*"/>
+                        <ColumnDefinition Width="133*"/>
+                        <ColumnDefinition Width="587*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="PatronFirstNameOutBox" HorizontalAlignment="Left" Height="23" Margin="19,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Grid.ColumnSpan="3"/>
+                    <Label x:Name="PatronNameOutLabel" Content="First Name" HorizontalAlignment="Left" Margin="19,10,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Button x:Name="PatronSearchOutButton" Content="Search" HorizontalAlignment="Left" Margin="355,37,0,0" VerticalAlignment="Top" Width="75" Grid.Column="2" Click="PatronSearchOutButton_Click"/>
+                    <Label x:Name="ItemInfoOutLabel" Content="Item Information" HorizontalAlignment="Left" Margin="10,246,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.164,-0.069" Grid.ColumnSpan="2"/>
+                    <Label x:Name="PatronInfoOutLabel" Content="Patron Information" HorizontalAlignment="Left" Margin="10,65,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <DatePicker x:Name="ItemDueDateOutPicker" Grid.Column="1" HorizontalAlignment="Left" Margin="116,503,0,0" VerticalAlignment="Top" Width="139" Grid.ColumnSpan="2"/>
+                    <Label x:Name="ItemDueDateOutLabel" Content="Item Due Date" Grid.Column="1" HorizontalAlignment="Left" Margin="116,477,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                    <Button x:Name="CheckOutButton" Content="Check Out!" HorizontalAlignment="Left" Margin="19,481,0,0" VerticalAlignment="Top" Width="149" Height="34" Grid.ColumnSpan="2" Click="CheckOutButton_Click"/>
+                    <TextBlock x:Name="CheckOutChurchMemberBox" Grid.Column="1" HorizontalAlignment="Left" Margin="90,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="0.198,0.21" Width="114" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="PatronLastNameOutBox" HorizontalAlignment="Left" Height="23" Margin="77,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="248" Grid.Column="2"/>
+                    <Label x:Name="PatronNameOutLabel_Copy" Content="Last Name" HorizontalAlignment="Left" Margin="77,11,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <DataGrid x:Name="PatronOutDataGrid" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="138" Margin="19,97,0,0" VerticalAlignment="Top" Width="659" IsReadOnly="True"/>
+                    <DataGrid x:Name="CheckOutListDataGrid" Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="195" Margin="19,277,0,0" VerticalAlignment="Top" Width="1031" IsReadOnly="True"/>
+                    <Button x:Name="CheckOutClearForm" Content="Clear Form" Grid.Column="2" HorizontalAlignment="Left" Margin="649,498,0,0" VerticalAlignment="Top" Width="132" Height="29" Click="CheckOutClearForm_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="ItemTab" Header="Item">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="87*"/>
+                        <ColumnDefinition Width="296*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="ItemTitleBox" HorizontalAlignment="Left" Height="23" Margin="22,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Grid.ColumnSpan="2"/>
+                    <Label x:Name="ItemTitleLabel" Content="Title" HorizontalAlignment="Left" Margin="22,6,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ItemAuthorBox" HorizontalAlignment="Left" Height="23" Margin="22,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Grid.ColumnSpan="2"/>
+                    <Label x:Name="ItemAuthorLabel" Content="Author" HorizontalAlignment="Left" Margin="22,55,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="ItemDateAcquiredPicker" HorizontalAlignment="Left" Margin="22,126,0,0" VerticalAlignment="Top" Width="142"/>
+                    <Label x:Name="ItemDateAcquiredLabel" Content="Date Acquired" HorizontalAlignment="Left" Margin="22,103,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ItemPriceBox" HorizontalAlignment="Left" Height="23" Margin="22,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="86"/>
+                    <Label x:Name="ItemPriceLabel" Content="Price" HorizontalAlignment="Left" Margin="22,144,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ItemCallNoBox" HorizontalAlignment="Left" Height="23" Margin="22,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="ItemCallNoLabel" Content="Call Number" HorizontalAlignment="Left" Margin="22,236,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ItemCopyrightBox" HorizontalAlignment="Left" Height="23" Margin="22,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="63"/>
+                    <Label x:Name="ItemCopyrightLabel" Content="Copyright Year" HorizontalAlignment="Left" Margin="20,284,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ItemPublisherBox" HorizontalAlignment="Left" Height="23" Margin="141.954,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+                    <Label x:Name="ItemPublisherLabel" Content="Publisher" HorizontalAlignment="Left" Margin="141.954,6,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemSourceBox" HorizontalAlignment="Left" Height="23" Margin="141.954,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+                    <Label x:Name="ItemSourceLabel" Content="Source" HorizontalAlignment="Left" Margin="141.954,55,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemClassBox" HorizontalAlignment="Left" Height="23" Margin="22,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Label x:Name="ItemClassLabel" Content="Classification" HorizontalAlignment="Left" Margin="22,187,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ItemExtentBox" HorizontalAlignment="Left" Height="23" Margin="15.954,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+                    <Label x:Name="ItemExtentLabel" Content="Extent" HorizontalAlignment="Left" Margin="15.954,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.486,0.001" Grid.Column="1"/>
+                    <TextBox x:Name="ItemRemarksBox" HorizontalAlignment="Left" Height="66" Margin="15.954,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+                    <Label x:Name="ItemRemarksLabel" Content="Remarks" HorizontalAlignment="Left" Margin="15.954,144,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemISBNBox" HorizontalAlignment="Left" Height="23" Margin="141.954,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+                    <Label x:Name="ItemISBNLabel" Content="ISBN" HorizontalAlignment="Left" Margin="141.954,103,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemEditionBox" HorizontalAlignment="Left" Height="23" Margin="141.954,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+                    <Label x:Name="ItemEditionLabel" Content="Edition" HorizontalAlignment="Left" Margin="141.954,144,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemNotesBox" HorizontalAlignment="Left" Height="37" Margin="141.954,213,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+                    <Label x:Name="ItemNotesLabel" Content="Notes" HorizontalAlignment="Left" Margin="141.954,187,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemSubjectsBox" HorizontalAlignment="Left" Height="72" Margin="359.954,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Grid.Column="1"/>
+                    <Label x:Name="ItemSubjectsLabel" Content="Subjects" HorizontalAlignment="Left" Margin="359.954,10,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemRateBox" HorizontalAlignment="Left" Height="23" Margin="359.954,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54" Grid.Column="1"/>
+                    <Label x:Name="ItemRateLabel" Content="Rate" HorizontalAlignment="Left" Margin="359.954,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.606,-0.351" Grid.Column="1"/>
+                    <TextBox x:Name="ItemDonorNameBox" HorizontalAlignment="Left" Height="23" Margin="141.954,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="192" Grid.Column="1"/>
+                    <Label x:Name="ItemDonorNameLabel" Content="Donor Name" HorizontalAlignment="Left" Margin="141.954,255,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemDonorNotesBox" HorizontalAlignment="Left" Height="110" Margin="142,330,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="199" Grid.Column="1"/>
+                    <Label x:Name="ItemDonorNotesLAbel" Content="Donor Notes" HorizontalAlignment="Left" Margin="141.954,304,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemAgeCodeBox" HorizontalAlignment="Left" Height="23" Margin="429.954,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="49" Grid.Column="1"/>
+                    <Label x:Name="ItemAgeCodeLabel" Content="Age Code" HorizontalAlignment="Left" Margin="429.954,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemInMemoryBox" HorizontalAlignment="Left" Height="23" Margin="507.954,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="64" Grid.Column="1"/>
+                    <Label x:Name="ItemInMemoryLabel" Content="In Memory" HorizontalAlignment="Left" Margin="507.954,100,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <TextBox x:Name="ItemMediaTypeBox" HorizontalAlignment="Left" Height="23" Margin="358.954,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Grid.Column="1"/>
+                    <Label x:Name="ItemMediaTypeLabel" Content="Media Type" HorizontalAlignment="Left" Margin="353.954,144,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+                    <Button x:Name="AddItemButton" Content="Add Item" HorizontalAlignment="Left" Margin="33,494,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.276,-0.402" Click="AddItemButton_Click"/>
+                    <Button x:Name="EditItemButton" Content="Update Item" HorizontalAlignment="Left" Margin="126,494,0,0" VerticalAlignment="Top" Width="75" Click="EditItemButton_Click"/>
+                    <Button x:Name="DeleteItemButton" Content="Delete Item" HorizontalAlignment="Left" Margin="215,494,0,0" VerticalAlignment="Top" Width="75" Click="DeleteItemButton_Click" Grid.ColumnSpan="2"/>
+                    <Label x:Name="ItemHonoreeLabel" Content="Honoree Name" Grid.Column="1" HorizontalAlignment="Left" Margin="452,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.219,-0.153"/>
+                    <TextBox x:Name="ItemHonoreeName" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="452,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="130"/>
+                    <Label x:Name="ItemDonationDateLabel" Content="Donation Date" Grid.Column="1" HorizontalAlignment="Left" Margin="16,247,0,0" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="ItemDonationDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="16,273,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="PatronTab" Header="Patron">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="PatronFirstNameBox" HorizontalAlignment="Left" Height="23" Margin="24,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134"/>
+                    <TextBox x:Name="PatronLastNameBox" HorizontalAlignment="Left" Height="23" Margin="192,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151"/>
+                    <TextBox x:Name="PatronAddressBox" HorizontalAlignment="Left" Height="38" Margin="24,72,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="319"/>
+                    <Label x:Name="PatronFirstNameLabel" Content="First Name" HorizontalAlignment="Left" Margin="24,1,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="PatronLastNameLabel" Content="Last Name" HorizontalAlignment="Left" Margin="192,1,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="PatronAddressLabel" Content="Street Address" HorizontalAlignment="Left" Margin="24,46,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.398,-0.119"/>
+                    <TextBox x:Name="PatronCityBox" HorizontalAlignment="Left" Height="23" Margin="24,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
+                    <TextBox x:Name="PatronStateBox" HorizontalAlignment="Left" Height="23" Margin="216,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="42"/>
+                    <TextBox x:Name="PatronZIPBox" HorizontalAlignment="Left" Height="23" Margin="274,129,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
+                    <Label x:Name="PatronCityLabel" Content="City" HorizontalAlignment="Left" Margin="24,103,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="PatronStateLabel" Content="State" HorizontalAlignment="Left" Margin="216,103,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.326,-0.164"/>
+                    <Label x:Name="PatronZIPLabel" Content="ZIP" HorizontalAlignment="Left" Margin="274,103,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="PatronMemberCheckbox" Content="Church Member" HorizontalAlignment="Left" Margin="24,167,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="AddPatronButton" Content="Add Patron" HorizontalAlignment="Left" Margin="672,50,0,0" VerticalAlignment="Top" Width="84" Click="AddPatronButton_Click"/>
+                    <Button x:Name="EditPatronButton" Content="Update Patron" HorizontalAlignment="Left" Margin="672,83,0,0" VerticalAlignment="Top" Width="84" Click="EditPatronButton_Click"/>
+                    <Button x:Name="DeletePatronButton" Content="Delete Patron" HorizontalAlignment="Left" Margin="672,114,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.505,1.214" Click="DeletePatronButton_Click"/>
+                    <TextBox x:Name="PatronEmailBox" HorizontalAlignment="Left" Height="23" Margin="403,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+                    <Label x:Name="PatronEmailLabel" Content="Email Address" HorizontalAlignment="Left" Margin="403,1,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="PatronPhoneBox" HorizontalAlignment="Left" Height="23" Margin="403,69,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="230"/>
+                    <Label x:Name="PatronPhoneLabel" Content="Phone Number" HorizontalAlignment="Left" Margin="403,47,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="SearchPatronButton" Content="Search Name" HorizontalAlignment="Left" Margin="672,19,0,0" VerticalAlignment="Top" Width="84" Click="SearchPatronButton_Click"/>
+                    <DatePicker x:Name="BirthDateDatePicker" HorizontalAlignment="Left" Margin="403,129,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Birth Date" HorizontalAlignment="Left" Margin="403,103,0,0" VerticalAlignment="Top"/>
+                    <Label x:Name="FinesOwedLabel" Content="Fines Owed :" HorizontalAlignment="Left" Margin="24,197,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+                    <TextBox x:Name="FinePaymentBox" HorizontalAlignment="Left" Height="23" Margin="101,221,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"/>
+                    <Label x:Name="PaymentLabel" Content="Payment" HorizontalAlignment="Left" Margin="40,218,0,0" VerticalAlignment="Top"/>
+                    <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="92" Margin="19,197,0,0" VerticalAlignment="Top" Width="165"/>
+                    <Button x:Name="PayFineButton" Content="Pay Fine" HorizontalAlignment="Left" Margin="101,255,0,0" VerticalAlignment="Top" Width="75" Click="PayFineButton_Click"/>
+                    <Button x:Name="ClearPatronFormButton" Content="Clear Form" HorizontalAlignment="Left" Margin="672,240,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.283,0.977" Height="35" Click="ClearPatronFormButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Search Card Catalog" Margin="-3,-2,-1,0">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="98*"/>
+                        <ColumnDefinition Width="167*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="SearchCardCatalogBox" HorizontalAlignment="Left" Height="21" Margin="26,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="573" Grid.ColumnSpan="2"/>
+                    <Label x:Name="SearchCardCatalogLabel" Content="Search Term" HorizontalAlignment="Left" Margin="26,10,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="TitleRadioButton" Content="Title" HorizontalAlignment="Left" Margin="35,75,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="AuthorRadioButton" Content="Author" HorizontalAlignment="Left" Margin="35,95,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.453,2.263"/>
+                    <RadioButton x:Name="SubjectRadioButton" Content="Subject" HorizontalAlignment="Left" Margin="35,115,0,0" VerticalAlignment="Top"/>
+                    <RadioButton x:Name="ISBNRadioButton" Content="ISBN" HorizontalAlignment="Left" Margin="35,135,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="SearchCardCatalogButton" Content="Search" HorizontalAlignment="Left" Margin="35,175,0,0" VerticalAlignment="Top" Width="75" Click="SearchCardCatalogButton_Click"/>
+                    <Button x:Name="CheckOutCatalogButton" Content="Check Out" HorizontalAlignment="Left" Margin="268,501,0,0" VerticalAlignment="Top" Width="75" Click="CheckOutCatalogButton_Click"/>
+                    <Button x:Name="CheckInCatalogButton" Content="Check In" HorizontalAlignment="Left" Margin="358,501,0,0" VerticalAlignment="Top" Width="75" Click="CheckInCatalogButton_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="ItemSearchButton" Content="Item" HorizontalAlignment="Left" Margin="52.568,501,0,0" VerticalAlignment="Top" Width="75" Click="ItemSearchButton_Click" Grid.Column="1"/>
+                    <DataGrid x:Name="SearchResultsGrid" HorizontalAlignment="Left" Height="410" Margin="130,75,0,0" VerticalAlignment="Top" Width="902" IsReadOnly="True" Grid.ColumnSpan="2"/>
+                    <Label x:Name="SearchResultsLabel" Content="Search Results" HorizontalAlignment="Left" Margin="130,54,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.542,0.15"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="DatabaseControlTab" Header="Database Control">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="445*"/>
+                        <ColumnDefinition Width="321*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button x:Name="ImportItemButton" Content="Import Items" HorizontalAlignment="Left" Margin="24,82,0,0" VerticalAlignment="Top" Width="124" Height="36" Click="ImportItemButton_Click"/>
+                    <Button x:Name="InitializeDBButton" Content="Initialize All Databases" HorizontalAlignment="Left" Margin="24,26,0,0" VerticalAlignment="Top" Width="124" Click="InitializeDBButton_Click" Height="36" RenderTransformOrigin="0.494,1.826"/>
+                    <Button x:Name="ClearPatronDBButton" Content="Clear Patron Database" HorizontalAlignment="Left" Margin="24,192,0,0" VerticalAlignment="Top" Width="124" Height="36" RenderTransformOrigin="0.494,1.826" Click="ClearPatronDBButton_Click"/>
+                    <Button x:Name="ClearItemDBButton" Content="Clear Item Database" HorizontalAlignment="Left" Margin="24,247,0,0" VerticalAlignment="Top" Width="124" Height="36" RenderTransformOrigin="0.494,1.826" Click="ClearItemDBButton_Click"/>
+                    <Button x:Name="ViewPatronDBButton" Content="Import Patrons" HorizontalAlignment="Left" Margin="24,139,0,0" VerticalAlignment="Top" Width="124" Height="36" RenderTransformOrigin="0.494,1.826" Click="ViewPatronDBButton_Click"/>
+                    <Button x:Name="ViewCheckedOutButton" Content="View Checked Out&#xD;&#xA;Items" HorizontalAlignment="Left" Margin="24,299,0,0" VerticalAlignment="Top" Width="124" Height="36" RenderTransformOrigin="0.494,1.826" Click="ViewCheckedOutButton_Click"/>
+                    <Button x:Name="ViewHistoryButton" Content="View History" HorizontalAlignment="Left" Margin="24,348,0,0" VerticalAlignment="Top" Width="124" Height="36" RenderTransformOrigin="0.494,1.826" Click="ViewHistoryButton_Click"/>
+                    <Button x:Name="BackupDatabaseButton" Content="Back Up Database" HorizontalAlignment="Left" Margin="24,400,0,0" VerticalAlignment="Top" Width="124" Height="36" RenderTransformOrigin="0.494,1.826" Click="BackupDatabaseButton_Click"/>
+                    <DataGrid x:Name="ReportGrid" HorizontalAlignment="Left" Height="494" Margin="181,26,0,0" VerticalAlignment="Top" Width="869" Grid.ColumnSpan="2"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="SettingsTab" Header="Settings" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="54">
+                <Grid Background="#FFE5E5E5">
+                    <TextBox x:Name="DefaulDaysBox" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="51"/>
+                    <Label x:Name="DefaultDaysLabel" Content="Default Days to Checkout" HorizontalAlignment="Left" Margin="66,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="DefaultFineBox" HorizontalAlignment="Left" Height="23" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="51"/>
+                    <Label x:Name="DefaultFineLabel" Content="Default Fine per Day Overdue" HorizontalAlignment="Left" Margin="66,46,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="AllowFineOverrideCheckbox" Content="Allow Fine Override" HorizontalAlignment="Left" Margin="283,10,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="ChurchNameBox" HorizontalAlignment="Left" Height="23" Margin="10,141,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="277"/>
+                    <Label x:Name="ChurchNameLabel" Content="Church Name" HorizontalAlignment="Left" Margin="10,115,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.481,0.017"/>
+                    <TextBox x:Name="MaxItemsBox" HorizontalAlignment="Left" Height="23" Margin="10,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="51"/>
+                    <Label x:Name="MaxItemsLabel" Content="Max Items to Allow per Patron" HorizontalAlignment="Left" Margin="66,84,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="SaveSettingsButton" Content="Save Settings" HorizontalAlignment="Left" Margin="352,144,0,0" VerticalAlignment="Top" Width="127" Height="37" Click="SaveSettingsButton_Click"/>
+                    <CheckBox x:Name="DatabaseControlCheckbox" Content="Enable Database Control" HorizontalAlignment="Left" Margin="283,34,0,0" VerticalAlignment="Top" Unchecked="DisableDBControl" Checked="EnableDBControl"/>
+                </Grid>
+            </TabItem>
+            <CheckBox Content="CheckBox" Height="100" Width="100"/>
+        </TabControl>
+
+    </Grid>
+</Window>
